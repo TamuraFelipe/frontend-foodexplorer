@@ -25,6 +25,11 @@ export const SignUp = () => {
       alert("Preencha todos os campos!");
       return;
     }
+    if(password.length < 6){
+      alert("Senha deve ter no mínimo 6 caracteres!")
+      return;
+    }
+    
     api.post("users", { name, email, password })
     .then( () => {
       alert("Usuário cadastrado com sucesso!")
