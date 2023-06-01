@@ -24,13 +24,13 @@ O frontend do Food Explorer utiliza as seguintes tecnologias:
 
 O projeto utiliza as seguintes dependências:
 
-- axios: ^1.4.0
-- react: ^18.2.0
-- react-dom: ^18.2.0
-- react-icons: ^4.8.0
-- react-router-dom: ^6.10.0
-- styled-components: ^5.3.10
-- swiper: 9.0.0
+- axios
+- react
+- react-dom
+- react-icons
+- react-router-dom
+- styled-components
+- swiper
 
 ## Instalação
 
