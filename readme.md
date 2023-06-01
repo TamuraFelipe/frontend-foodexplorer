@@ -7,7 +7,9 @@ O projeto utiliza as tecnologias e ferramentas aprendidas ao longo do programa E
 A aplicação foi desenvolvida de forma responsiva, visando proporcionar uma experiência consistente em diferentes tamanhos de tela, desde dispositivos móveis até desktops.
 
 ## Preview
-![Preview](https://example.com/food-explorer-preview.png)
+![Preview](./src/assets/login.png)
+![Preview](./src/assets/home.png)
+
 
 ## Tecnologias Utilizadas
 
