@@ -11,7 +11,9 @@ A aplicação foi desenvolvida de forma responsiva, visando proporcionar uma exp
 Link para aplicação e login com a visão administrativa do projeto.
 
 Link: 
+
 user: admin@email.com
+
 password: 123456
 
 ## Deploy
