@@ -6,6 +6,19 @@ O projeto utiliza as tecnologias e ferramentas aprendidas ao longo do programa E
 
 A aplicação foi desenvolvida de forma responsiva, visando proporcionar uma experiência consistente em diferentes tamanhos de tela, desde dispositivos móveis até desktops.
 
+## Acesso
+
+Link para aplicação e login com a visão administrativa do projeto.
+
+Link: 
+user: admin@email.com
+password: 123456
+
+## Deploy
+
+Para o deploy da frontend da aplicação, utilizamos o Netlify.
+![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)(https://www.netlify.com/)
+
 ## Preview
 ![Preview](./src/assets/login.png)
 ![Preview](./src/assets/home.png)
