@@ -1,10 +1,6 @@
 # Food Explorer - Frontend
 
-O Food Explorer Frontend é a parte do aplicativo responsável pela interface do usuário, permitindo que os clientes do restaurante visualizem e explorem o menu de forma interativa. A aplicação foi desenvolvida como parte do projeto final do programa Explorer da Rocketseat.
-
-## Descrição do Projeto
-
-O Food Explorer faz parte do desafio final do programa Explorer da Rocketseat. O objetivo do projeto é desenvolver uma aplicação completa de um restaurante fictício, que permita aos usuários visualizar e explorar o menu disponível, enquanto o admin pode adicionar, editar e remover pratos.
+O Food Explorer faz parte do desafio final do programa Explorer da Rocketseat. O objetivo do projeto é desenvolver uma aplicação completa de um restaurante fictício, que permita aos usuários visualizar e explorar o menu disponível.
 
 O projeto utiliza as tecnologias e ferramentas aprendidas ao longo do programa Explorer, incluindo o uso do React para construir a interface do usuário, o Axios para fazer requisições à API, o React Router DOM para a navegação entre páginas, e o Styled Components para estilização dos componentes.
 
