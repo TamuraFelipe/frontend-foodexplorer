@@ -6,6 +6,9 @@ O projeto utiliza as tecnologias e ferramentas aprendidas ao longo do programa E
 
 A aplicação foi desenvolvida de forma responsiva, visando proporcionar uma experiência consistente em diferentes tamanhos de tela, desde dispositivos móveis até desktops.
 
+## Preview
+![Preview](https://example.com/food-explorer-preview.png)
+
 ## Tecnologias Utilizadas
 
 O frontend do Food Explorer utiliza as seguintes tecnologias:
@@ -54,7 +57,7 @@ npm install
 5. Inicie o servidor de desenvolvimento:
 
 ```
-npm start
+npm run dev
 ```
 
 O frontend estará disponível em http://localhost:3000.
@@ -68,4 +71,4 @@ O frontend estará disponível em http://localhost:3000.
 
 ## Licença
 
-Este projeto está licenciado sob a licença [ISC](https://opensource.org
+Este projeto está licenciado sob a licença [ISC](https://opensource.org)
