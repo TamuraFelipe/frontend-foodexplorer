@@ -1,20 +1,20 @@
 import React, { useState} from 'react';
+import { FiPlus, FiMinus } from 'react-icons/fi';
 
 import { Button } from '../Button';
 import { ButtonText } from '../ButtonText';
 
-import { FiPlus, FiMinus } from 'react-icons/fi';
+import { useCart } from '../../hooks/cart';
 
 import {
     Container,
 } from './styles'
 
-export const HandleQuantityButton = () => {
+export const HandleQuantityButton = ({ data }) => {
     const [qtd, setQtd] = useState(1);
 
-    if(qtd > 8 ) {
-    
-    }
+    const {addDishesCart} = useCart();
+    const {name, image, price} = data;
     
     function decrease(qtd){
         if(qtd === 1){
@@ -27,6 +27,10 @@ export const HandleQuantityButton = () => {
         setQtd(qtd + 1)
     }
 
+    function handleAddDishesCart(){
+        addDishesCart({data, quantity: qtd})
+    }
+
   return (
     <>
         <Container>
@@ -35,7 +39,10 @@ export const HandleQuantityButton = () => {
             <ButtonText onClick={ () => increase(qtd)} icon={FiPlus}/>
         </Container>
         <div>
-            <Button title='Incluir'/>
+            <Button 
+            title='Incluir'
+            onClick={handleAddDishesCart}
+            />
         </div>
     </>
   )

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, json, useNavigate, useParams } from 'react-router-dom'
 
 import { api } from '../../services/api';
 import { useAuth } from '../../hooks/auth';
@@ -28,6 +28,13 @@ export const Details = () => {
     function handleEdit(){
         navigate(`/edit/${params.id}`)
     }
+
+    useEffect( () => {
+        async function getQuantity(){
+            const dishe = JSON.parse(window.localStorage.getItem("@foodExplorer:cart"))
+        }
+        getQuantity();
+    }, []);
         
     useEffect( () => {
         async function fetchDetailDishe(){
@@ -64,7 +71,7 @@ export const Details = () => {
                                 onClick={handleEdit}
                                 />
                                 :
-                                <HandleQuantityButton />
+                                <HandleQuantityButton data={data}/>
                             }
                         </div>
                     </div>

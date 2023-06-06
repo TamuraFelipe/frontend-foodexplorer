@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 
 import { useAuth } from "../../hooks/auth";
+import { useCart } from '../../hooks/cart';
 
 import { AiOutlineSearch } from 'react-icons/ai';
 
@@ -72,7 +73,7 @@ export const Header = ({search, disabled}) => {
                 {user.isAdmin ? 
                     <Link to="/newdishe">Novo prato</Link>
                     :
-                    <Link to="/">Pedidos <span>(0)</span></Link>
+                    <Link to="/cart">Pedidos <span>(0)</span></Link>
                 }
                 <button type='button' onClick={signOut}>
                     <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">

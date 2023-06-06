@@ -62,7 +62,7 @@ export const Card = ({ data, ...rest }) => {
                         <span>R$ {data.price}</span>
                     </Link>
                     <Quantity>
-                        <HandleQuantityButton />
+                        <HandleQuantityButton data={data}/>
                     </Quantity>
                 </CardContent>
             
