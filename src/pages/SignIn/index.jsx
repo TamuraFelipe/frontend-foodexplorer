@@ -11,6 +11,7 @@ import {
   Container,
   Form,
 } from './styles';
+import { Link } from 'react-router-dom';
 
 
 export const SignIn = () => {
@@ -51,7 +52,7 @@ export const SignIn = () => {
         {
           loading ? <Button title="Entrando" type="button" disabled/> : <Button title="Entrar" type="button" onClick={handleLogin} />
         }
-        <a href="/register">Criar conta</a>
+        <Link to="/register">Criar conta</Link>
       </Form>
     </Container>
   )
