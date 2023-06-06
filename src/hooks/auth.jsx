@@ -1,15 +1,19 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../services/api";
+import { useCart } from "./cart";
 
 export const AuthContext = createContext({});
 
-
 function AuthProvider({ children }){
     const [data, setaData] = useState({});
+    const [loading, setLoading] = useState(false);
 
+    const {setCart} = useCart();
+    
     async function signIn({ email, password }){
         
         try {
+            setLoading(true)
             const response = await api.post("/sessions", {email, password});
             const { user, token } = response.data;
             
@@ -25,14 +29,19 @@ function AuthProvider({ children }){
             } else {
                 alert("Não foi possível conectar!")
             }
+        } finally {
+            setLoading(false)
         }
     }
-
+    
     function signOut(){
         localStorage.removeItem("@foodExplorer:token");
-        localStorage.removeItem("@foodExplorer:user")
+        localStorage.removeItem("@foodExplorer:user");
+
+        localStorage.removeItem("@foodExplorer:cart");
         
-        setaData({})
+        setaData({});
+        
     }
 
     useEffect( () => {
@@ -53,6 +62,7 @@ function AuthProvider({ children }){
             signIn,
             signOut, 
             user: data.user, 
+            loading,
             }}>
             {children}
         </AuthContext.Provider>
