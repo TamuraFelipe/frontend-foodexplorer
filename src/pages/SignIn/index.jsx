@@ -17,7 +17,7 @@ export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { signIn } = useAuth();
+  const { signIn, loading } = useAuth();
   
   function handleLogin(){
     signIn({
@@ -48,11 +48,9 @@ export const SignIn = () => {
         title="Senha"
         onChange={ ({target}) => setPassword(target.value)}
         />
-        <Button 
-        title="Entrar"
-        type="button"
-        onClick={handleLogin}
-        />
+        {
+          loading ? <Button title="Entrando" type="button" disabled/> : <Button title="Entrar" type="button" onClick={handleLogin} />
+        }
         <a href="/register">Criar conta</a>
       </Form>
     </Container>
