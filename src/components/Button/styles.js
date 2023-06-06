@@ -6,6 +6,10 @@ export const Container = styled.button`
     background: ${({ theme }) => theme.COLORS.TOMATO};
     color: ${({ theme }) => theme.COLORS.WHITE};
     border: none;
+    
+    opacity: ${({ disabled }) => disabled ? .5 : 1};
+    pointer-events: ${({ disabled }) => disabled ? 'none' : 'initial'};
+    
 
     &:hover {
         background: ${({ theme }) => theme.COLORS.TOMATO_200};
