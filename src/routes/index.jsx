@@ -10,7 +10,7 @@ export const Routes = () => {
     
     return(
         <BrowserRouter>
-            {user && user ? <AppRoutes /> : <AuthRoutes />}
+            {user ? <AppRoutes /> : <AuthRoutes />}
         </BrowserRouter>
     );
 }
