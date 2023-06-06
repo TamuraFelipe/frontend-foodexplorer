@@ -12,11 +12,15 @@ import logoSvg from '../../assets/logo.png';
 
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
+import { useAuth } from '../../hooks/auth';
 
 export const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false)
+
+  
 
   const navigate = useNavigate();
 
@@ -30,9 +34,11 @@ export const SignUp = () => {
       return;
     }
     
+    setLoading(true)
     api.post("users", { name, email, password })
     .then( () => {
       alert("Usuário cadastrado com sucesso!")
+      setLoading(false);
       navigate("/");
     })
     .catch( error => {
@@ -73,11 +79,9 @@ export const SignUp = () => {
         title="Senha"
         onChange={ ({target}) => setPassword(target.value)}
         />
-        <Button 
-        title="Criar conta"
-        type="button"
-        onClick={handleSignUp}
-        />
+        {
+          loading ? <Button title="Criando" type="button" disabled/> : <Button title="Criar" type="button" onClick={handleSignUp} />
+        }
         <a href="/">Já tenho uma conta</a>
       </Form>
     </Container>
