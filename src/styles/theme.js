@@ -18,6 +18,7 @@ export default {
         WHITE: "#FFF",
         TOMATO: "#750310",
         TOMATO_200: "#92000E",
+        TOMATO_400: "#AB4D55",
 
         CAKE_200: "#82F3FF",
     }
