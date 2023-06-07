@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { api } from '../../services/api';
+import {  api } from '../../services/api';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
@@ -19,7 +19,6 @@ import {
 
 export const Home = () => {
     const [categories, setCategory] = useState([])
-    
     const [dishes, setDishes] = useState([]);
     const [search, setSearch] = useState("");
     
@@ -28,7 +27,6 @@ export const Home = () => {
             const response = await api.get(`/categories`);
             const categories = response.data;
             setCategory(categories)
-            //console.log(categories)
         }
         fetchCategories();
     }, []);
