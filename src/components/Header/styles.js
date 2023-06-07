@@ -118,7 +118,7 @@ export const Container = styled.header`
             height: 100vh;
         }
 
-        > div {
+        > .btn-ico {
             display: flex;
             align-items: center;
             position: relative;
@@ -187,6 +187,9 @@ export const Container = styled.header`
                 font-size: 14px;
                 line-height: 24px;
                 width: unset;
+            }
+            .btn-ico {
+                display: none;
             }
         }
     }
