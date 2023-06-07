@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
 import { api } from '../../services/api';
 
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 import { BiEdit } from 'react-icons/bi';
+import { HandleQuantityButton } from '../HandleQuantityButton';
 
 import { useAuth } from "../../hooks/auth";
+import { useCart } from '../../hooks/cart';
 
 import imgPlaceholder from '../../assets/img-placeholder.svg';
 
@@ -15,20 +17,19 @@ import {
     CardContent,
     Quantity
 } from './styles';
-import { HandleQuantityButton } from '../HandleQuantityButton';
 
 export const Card = ({ data, ...rest }) => {
     const [favorite, setFavorite] = useState(false);
 
     const navigate = useNavigate();
 
-    const img = data.image ? `${api.defaults.baseURL}/files/${data.image}` : imgPlaceholder;;
+    const img = data.image ? `${api.defaults.baseURL}/files/${data.image}` : imgPlaceholder;
     
     const { user } = useAuth();
-    /* const isAdmin = admin; */
+    const { cart } = useCart();
+
     
-       
-  return (
+    return (
     <Container>
         {
             user.isAdmin ?
@@ -61,8 +62,9 @@ export const Card = ({ data, ...rest }) => {
                         <p>{data.description}</p>
                         <span>R$ {data.price}</span>
                     </Link>
+                    
                     <Quantity>
-                        <HandleQuantityButton data={data}/>
+                        <HandleQuantityButton image={img} data={data}/>
                     </Quantity>
                 </CardContent>
             

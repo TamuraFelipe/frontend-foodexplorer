@@ -10,12 +10,11 @@ import {
     Container,
 } from './styles'
 
-export const HandleQuantityButton = ({ data }) => {
+export const HandleQuantityButton = ({ data, image, quantity }) => {
     const [qtd, setQtd] = useState(1);
 
     const {addDishesCart} = useCart();
-    const {name, image, price} = data;
-    
+
     function decrease(qtd){
         if(qtd === 1){
             setQtd(1);
@@ -28,7 +27,7 @@ export const HandleQuantityButton = ({ data }) => {
     }
 
     function handleAddDishesCart(){
-        addDishesCart({data, quantity: qtd})
+        addDishesCart({data, quantity: qtd, image})
     }
 
   return (
