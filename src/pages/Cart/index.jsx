@@ -9,23 +9,24 @@ import { Footer } from '../../components/Footer';
 import {
     Container,
 } from './styles';
-import { HandleQuantityButton } from '../../components/HandleQuantityButton';
 
 export const Cart = () => {
   const { removeDisheCart, cart, total } = useCart();
 
   function handleRemoveDisheCart(item){
     removeDisheCart(item)
-    //console.log(item)
   }
 
-  console.log(total)
   return (
     <>
         <Header disabled/>
         <Container>
           <h1>Meu pedido</h1>
-            <ul>
+            {
+              cart.length === 0 ?
+              <p style={{marginBlock: '32px'}}>Nenhum produto no carrinho</p>
+              :
+              <ul>
               {
                 cart && cart.map( item => 
                   <li key={item.id}>
@@ -37,8 +38,6 @@ export const Cart = () => {
                       </div>
                       <p className='price'>R$ {item.price}</p>
                       <p className='total'>Total: R$ {item.total.toFixed(2)}</p>
-                      
-                      
                       <button 
                       className='btn-excluir' 
                       type='button'
@@ -51,6 +50,8 @@ export const Cart = () => {
                 )
               }
             </ul>
+
+            }
             <Link style={{ marginBottom: '32px', display: 'block', color: 'rgb(171, 77, 85)', textAlign: 'right'}} to="/">Colocar mais produtos no carrinho.</Link>
             <p className='total-lg'>Total do pedido: R${total.toFixed(2).replace(',', '.')}</p>
         </Container>

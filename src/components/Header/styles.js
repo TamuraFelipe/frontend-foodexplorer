@@ -19,6 +19,9 @@ export const Container = styled.header`
         > a {
             display: none;
         }
+        .favorites {
+            background: none;
+        }
         
         > div {
             
@@ -151,7 +154,7 @@ export const Container = styled.header`
             > a {
                     background: ${({ theme }) => theme.COLORS.TOMATO};
                     border-radius: 8px;
-                    padding: 12px 68px;
+                    padding: 12px 10px;
                     display: block;
             }
             

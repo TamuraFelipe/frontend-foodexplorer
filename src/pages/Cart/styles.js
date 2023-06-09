@@ -8,7 +8,7 @@ export const Container = styled.section`
     color: white;
 
     > h1 {
-
+        margin-top: 32px;
     }
 
     > ul {
@@ -58,6 +58,7 @@ export const Container = styled.section`
     .total-lg {
         font-size: 20px;
         margin-bottom: 32px;
+        text-align: right;
     }
 
     @media (min-width: 769px){

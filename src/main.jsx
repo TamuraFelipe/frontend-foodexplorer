@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 
 import { AuthProvider } from './hooks/auth';
 import { CartProvider } from './hooks/cart';
+import { FavoriteProvider } from './hooks/favorites';
 
 import { Routes } from './routes';
 
@@ -16,9 +17,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <AuthProvider>
-        <CartProvider>
-          <Routes />   
-        </CartProvider> 
+        <FavoriteProvider>
+          <CartProvider>
+            <Routes />   
+          </CartProvider> 
+        </FavoriteProvider>
       </AuthProvider>            
     </ThemeProvider>
   </React.StrictMode>,
