@@ -20,9 +20,9 @@ export const Container = styled.section`
 
     @media (min-width: 769px){
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        padding: 0 108px 30px 0;
+        max-width: 1120px;
+        margin-inline: auto;
         
         > div {
             margin: 0;
