@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
+import { FcLike } from 'react-icons/fc';
+
 import { useAuth } from "../../hooks/auth";
 import { useCart } from '../../hooks/cart';
 
@@ -66,7 +68,16 @@ export const Header = ({search, disabled}) => {
                 />
                 <ul>
                     {
-                        user.isAdmin ? <li><Link to="/newdishe">Novo prato</Link></li> : <li><Link to="/favorites">Meus Favoritos</Link></li>
+                        user.isAdmin ? <li><Link to="/newdishe">Novo prato</Link></li> 
+                        : 
+                        <>
+                            <li>
+                                <Link to="/favorites">Meus Favoritos</Link>
+                            </li>
+                            <li>
+                                <Link to="/history">Histórico de Pedidos</Link>
+                            </li>
+                        </>
                     }
                     <li><Link to="#" onClick={signOut}>Sair</Link></li>
                 </ul>
@@ -75,9 +86,12 @@ export const Header = ({search, disabled}) => {
             {user.isAdmin ? 
                 <Link to="/newdishe">Novo prato</Link>
                 :
-                <Link to="/cart">Pedidos <span>({cart.length})</span></Link>
+                <>
+                    <Link to="/cart">Pedidos <span>({cart.length})</span></Link>
+                    <Link className='favorites' to="/favorites"><FcLike size={30}/></Link>
+                    <Link to="/history" className='btn-history'>Histórico de Pedidos</Link>
+                </>
             }
-            <Link className='favorites' to="/favorites"><span>Meus Favoritos</span></Link>
             
 
             <button type='button' onClick={signOut}>

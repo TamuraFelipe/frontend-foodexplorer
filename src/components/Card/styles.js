@@ -24,6 +24,11 @@ export const CardContent = styled.div`
         top: 16px;
         right: 16px;
     }
+    .btn-edit {
+        svg:hover {
+            color: ${({ theme }) => theme.COLORS.TOMATO};
+        }
+    }
     .link-detail {
         text-align: center;
         img {

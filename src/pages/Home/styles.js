@@ -15,7 +15,7 @@ export const Container = styled.section`
     @media (min-width: 769px){
         .swiper {
             .swiper-button-next, .swiper-button-prev {
-                width: 12rem;
+                width: 5rem;
                 top: 18px;
                 height: 100%;
                 color: ${({ theme }) => theme.COLORS.TOMATO};

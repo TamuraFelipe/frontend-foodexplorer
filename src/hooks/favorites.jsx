@@ -5,8 +5,6 @@ const FavoriteContext = createContext();
 function FavoriteProvider({children}){
     const [favorites, setFavorites] = useState(JSON.parse(window.localStorage.getItem("@foodExplorer:favorites")) || []);
 
-    console.log(favorites)
-
     function addToFavorite({id, img, name}){
         const item = {
             id: id,

@@ -9,12 +9,13 @@ export default createGlobalStyle`
     #root {
         display: flex;
         flex-direction: column;
-        height: 100vh;
+        min-height: 100vh;
     }
     body {
         background: ${({ theme }) => theme.COLORS.DARK_400};
 
         -webkit-font-smoothing: antialiased;
+        height: 100%;
 
         
         
@@ -63,6 +64,9 @@ export default createGlobalStyle`
         cursor: pointer;
     } 
     h3, p {
+        font-family: 'Poppins', sans-serif;
+    }
+    td, th {
         font-family: 'Poppins', sans-serif;
     }
 `;

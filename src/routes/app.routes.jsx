@@ -6,6 +6,7 @@ import { Details } from '../pages/Details';
 import { Edit } from '../pages/Edit';
 import { Cart } from '../pages/Cart';
 import { Favorites } from '../pages/Favorites';
+import { OrderHistory } from '../pages/OrderHistory';
 
 export const AppRoutes = () => {
     return(
@@ -16,6 +17,7 @@ export const AppRoutes = () => {
             <Route path='/edit/:id' element={<Edit />}/>
             <Route path='/cart' element={<Cart />}/>
             <Route path='/favorites' element={<Favorites />} />
+            <Route path='/history' element={<OrderHistory />} />
         </Routes>
     );
 };

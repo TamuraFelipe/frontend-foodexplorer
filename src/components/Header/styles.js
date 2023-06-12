@@ -22,6 +22,10 @@ export const Container = styled.header`
         .favorites {
             background: none;
         }
+        .btn-history {
+            background: none;
+            padding-inline: 0;
+        }
         
         > div {
             
@@ -163,7 +167,7 @@ export const Container = styled.header`
             }
             .mobileMenu {
                 position: unset;
-                max-width: 580px;
+                max-width: 470px;
                 justify-content: center;
                 
                 div {
@@ -178,7 +182,8 @@ export const Container = styled.header`
             }
 
             >button {
-                display: block;
+                display: flex;
+                align-items: center;
             }
 
             > button.tomato {

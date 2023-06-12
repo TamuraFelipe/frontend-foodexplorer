@@ -7,12 +7,13 @@ export const Container = styled.section`
     margin-top: 32px;
     color: white;
     padding-top: 104px;
+    flex-grow: 1;
 
     > ul {
         display: grid;
         grid-template-columns: 1fr;
         gap: 32px;
-        margin-top: 32px;
+        margin-block: 32px;
         li {
             display: flex;
             align-items: center;
