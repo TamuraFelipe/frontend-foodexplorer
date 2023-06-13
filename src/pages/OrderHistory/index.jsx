@@ -12,7 +12,7 @@ import { useAuth } from '../../hooks/auth';
 
 export const OrderHistory = () => {
     const [orders, setOrders] = useState([]);
-
+    
     const {user} = useAuth();
 
     function getStatus(status){
@@ -50,8 +50,18 @@ export const OrderHistory = () => {
                     </tr>
                 </thead>
                 <tbody>
+                    
                     {
-                        orders ? orders.map( order => 
+                        orders.length === 0 &&
+                        <tr style={{ gridTemplateColumns: '1fr'}}>
+                            <td style={{ justifyContent: 'center'}}>
+                                <strong>Desculpe! Você ainda não possui histórico de compras!</strong>
+                            </td>
+                        </tr>
+                    }
+                    
+                    {
+                        orders && orders.map( order => 
                         <tr key={order.id}>
                             <td><GrStatusGoodSmall className={getStatus(order.status)}/><span>{order.status}</span></td>
                             <td><span className='mobile'><strong>Cód.: </strong></span>0000{order.id}</td>
@@ -63,10 +73,6 @@ export const OrderHistory = () => {
                             </td>
                             <td><span className='mobile'><strong>Data e Hora</strong> - </span>{order.created_at}</td>
                         </tr>)
-                        :
-                        <tr>
-                            <td><strong>Você ainda não possui pedidos no seu histórico!</strong></td>
-                        </tr>
                     }
                 </tbody>
             </table>
