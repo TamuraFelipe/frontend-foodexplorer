@@ -80,7 +80,7 @@ O projeto utiliza as seguintes dependências:
 
 Para executar o frontend do Food Explorer, siga as instruções abaixo:
 
-1. Certifique-se de que o backend do Food Explorer esteja em execução e acessível através de uma API.
+1. O Backend da aplicação se encontra aqui - https://github.com/TamuraFelipe/backend-foodexplorer
 
 2. Clone o repositório do frontend para sua máquina local:
 
