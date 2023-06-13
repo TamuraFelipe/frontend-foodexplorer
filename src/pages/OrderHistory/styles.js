@@ -47,23 +47,28 @@ export const Container = styled.section`
                     }
                     &:nth-child(2) {
                         border-left: 0.8px solid rgb(25, 34, 39);
+                        display: flex;
+                        align-items: center;
                     }
                     &:nth-child(3) {
                         grid-column: 1/3;
                         border-bottom: 0.8px solid rgb(25, 34, 39);
                         border-top: 0.8px solid rgb(25, 34, 39);
                     }
+                    &:nth-child(4){
+                        grid-column: 1/3;
+                    }
                 }
             }
             .pending {
-                        color: red;
-                    }
-                    .waiting {
-                        color: yellow;
-                    }
-                    .finishing {
-                        color: green;
-                    }
+                color: red;
+            }
+            .waiting {
+                color: yellow;
+            }
+            .finishing {
+                color: green;
+            }
         }
         
     }
@@ -132,6 +137,9 @@ export const Container = styled.section`
                             border-right: 0.8px solid rgb(25, 34, 39);
                             border-bottom: none;
                             border-top: none;
+                            grid-column: initial;
+                        }
+                        &:nth-child(4) {
                             grid-column: initial;
                         }
                         .mobile {

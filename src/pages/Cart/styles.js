@@ -92,23 +92,26 @@ export const Container = styled.section`
                 align-items: center;
                 justify-content: space-around;
                 position: relative;
-                height: 32px;
                 button {
                     width: 50%;
-                    height: 32px;
+                    height: 90px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 16px;
                 }
                 button:hover {
                     background: ${({theme}) => theme.COLORS.DARK_1000};
-                    height: 30px;
+                    
                 }
                 button.active {
                     background: ${({theme}) => theme.COLORS.DARK_1000};
-                    height: 30px;
+                    
                 }
                 &::after {
                     content: "";
                     width: 1px;
-                    height: 32px;
+                    height: 90px;
                     background: #fff;
                     position: absolute;
                     left: 50%;
@@ -213,24 +216,25 @@ export const Container = styled.section`
                     align-items: center;
                     justify-content: space-around;
                     position: relative;
-                    height: 32px;
                     button {
                         width: 50%;
-                        height: 32px;
-                        display: block;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 16px;
+                        font-size: 18px;
                     }
                     button:hover {
                         background: ${({theme}) => theme.COLORS.DARK_1000};
-                        height: 30px;
+                        
                     }
                     button.active {
                         background: ${({theme}) => theme.COLORS.DARK_1000};
-                        height: 30px;
+                        
                     }
                     &::after {
                         content: "";
                         width: 1px;
-                        height: 32px;
                         background: #fff;
                         position: absolute;
                         left: 50%;

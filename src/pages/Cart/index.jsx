@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { MdPix, MdCreditCard, MdOutlineShoppingCart } from 'react-icons/md';
 
 import { useCart } from '../../hooks/cart';
 
@@ -13,20 +14,27 @@ import img from '../../assets/qr-code-pix.png';
 import {
     Container,
 } from './styles';
+import { api } from '../../services/api';
 
 export const Cart = () => {
+  const [loading, setLoading] = useState(false)
   const [payment, setPayment] = useState(true);
   const [pix, setPix] = useState(false);
   const [credit, setCredit] = useState(false);
     
-  const { removeDisheCart, cart, total } = useCart();
+  const { removeDisheCart, cart, total, resetCart } = useCart();
+  const navigate = useNavigate();
+  
+  
 
   function handleClickPix(){
+    
     setPayment(false)
     setCredit(false)
     setPix(true)
   }
   function handleClickCredit(){
+    
     setPayment(false)
     setPix(false)
     setCredit(true)
@@ -40,6 +48,45 @@ export const Cart = () => {
 
   function handleRemoveDisheCart(item){
     removeDisheCart(item)
+  }
+
+  /*Preparando, Aguardando, Finalizado*/
+  function createCart(cart) {
+    return {
+      status: 'Aguardando',
+      paymentMethod: pix ? 'pix': 'credit',
+      total: total,
+      cart: cart.map(item => (
+        {
+          id: item.id,
+          name: item.name,
+          quantity: item.quantity
+        }
+      ))
+    }
+  }
+
+  async function handleCreateOrder(cart){
+    const newOrder = createCart(cart)
+    
+    await api.post("/orders", newOrder)
+    .then(() => {
+      setLoading(true);
+      setTimeout(() => {    
+          alert("Pedido cadastrado com sucesso!");
+          navigate(-1);
+          resetCart();
+      }, 4000);
+    })
+    .catch(error => {
+        if(error.response){
+            alert(error.response.data.message);
+        } else {
+            alert("Não foi possível cadastrar");
+        }
+    });
+
+    //console.log(newOrder)
   }
 
   return (
@@ -89,23 +136,44 @@ export const Cart = () => {
             
             <div className='box-forma'>
               <div className='btn-forma'>
-                <button onClick={handleClickPix}>PIX</button>
-                <button onClick={handleClickCredit}>Cartão de crédito</button>
+                <button className={pix ? "active" : ""} onClick={handleClickPix}><MdPix size={30}/><strong>PIX</strong></button>
+                <button className={credit ? "active" : ""} onClick={handleClickCredit}><MdCreditCard size={30}/><strong>Crédito</strong></button>
               </div>
+              
               {
                 payment ?
-                <p style={{ marginBlock: '32px', textAlign: 'center'}}>Escolha a forma de pagamento</p>
+                <>
+                  <MdOutlineShoppingCart size={130} style={{ marginInline: "auto", marginBlock: "32px", display: "block"}}/>
+                  <p style={{ marginBlock: '32px', textAlign: 'center'}}>Escolha a forma de pagamento</p>
+                </>
                 :
                 <div className='box-info'>
                 
                 {
                   pix ?
                   <div className='box-pix'>
-                    <img src={img} alt="" />
-                    <Button 
-                    onClick={ () => alert("Está função ainda está em desenvolvimento!")} 
-                    title='Finalizar Pedido'
-                    />
+                    {
+                      loading ? <p>Efetuando Pagamento</p> : <img src={img} alt="" />
+                    }
+                    {
+                      loading ?
+                      <Button 
+                      onClick={ (e) => {
+                        e.preventDefault();
+                        handleCreateOrder(cart)
+                      }}  
+                      title="Finalizando"
+                      disabled
+                      />
+                      : 
+                      <Button 
+                      onClick={ (e) => {
+                        e.preventDefault();
+                        handleCreateOrder(cart)
+                      }}  
+                      title="Finalizar Pedido"
+                      />
+                    }
                   </div>
                   : 
                   null
@@ -120,10 +188,25 @@ export const Cart = () => {
                         <Input title='Validade' type='number'/>
                         <Input title='CVC' type='number'/>
                       </div>
-                      <Button 
-                      onClick={ () => alert("Está função ainda está em desenvolvimento!")} 
-                      title='Finalizar Pedido'
-                      />
+                      {
+                        loading ?
+                        <Button 
+                        onClick={ (e) => {
+                          e.preventDefault();
+                          handleCreateOrder(cart)
+                        }}  
+                        title="Finalizando"
+                        disabled
+                        />
+                        : 
+                        <Button 
+                        onClick={ (e) => {
+                          e.preventDefault();
+                          handleCreateOrder(cart)
+                        }}  
+                        title="Finalizar Pedido"
+                        />
+                      }
                     </form>
                   </div>
                   :

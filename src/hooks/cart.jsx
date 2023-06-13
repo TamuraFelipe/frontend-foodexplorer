@@ -4,7 +4,6 @@ export const CartContext = createContext({});
 
 const CartProvider = ({ children }) => {
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem("@foodExplorer:cart")) || [])
-
       
     function addDishesCart({ data, quantity, image }){
         const { id, name, price } = data;
@@ -28,11 +27,13 @@ const CartProvider = ({ children }) => {
         setCart(prevState => prevState.filter(item => item.id !== deleted))
     }
 
-    
+    function resetCart(){
+        window.localStorage.removeItem("@foodExplorer:cart");
+        setCart([]);
+    }    
     const total = cart.reduce( (value, item) => {
         return value + Number(item.total)
     }, 0)
-    
     
     useEffect( () => {
         localStorage.setItem("@foodExplorer:cart", JSON.stringify(cart));
@@ -42,6 +43,7 @@ const CartProvider = ({ children }) => {
     <CartContext.Provider value={{
         addDishesCart,
         removeDisheCart,
+        resetCart,
         setCart,
         cart,
         total,

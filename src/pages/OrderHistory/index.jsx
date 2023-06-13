@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { GrStatusGoodSmall } from 'react-icons/gr';
 
@@ -7,14 +7,39 @@ import {
 } from './styles';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
+import { api } from '../../services/api';
+import { useAuth } from '../../hooks/auth';
 
 export const OrderHistory = () => {
+    const [orders, setOrders] = useState([]);
+
+    const {user} = useAuth();
+
+    function getStatus(status){
+        if(status === "Aguardando"){
+            return "pending";
+        } else if (status === "Preparando") {
+            return "waiting";
+        } else {
+            return "finishing";
+        }
+    }
+    
+    useEffect( () => {
+        async function fetchOrders(){
+            const response = await api.get("/orders");
+            const data = response.data;
+            
+            setOrders(data);
+            //console.log(data)
+        }
+        fetchOrders();
+    }, [orders]);
   return (
     <>
-        <Header />
+        <Header disabled/>
         <Container> 
             <h1>Pedidos</h1>
-            <p style={{ marginBottom: '32px', color: 'orange'}}>(***Página em desenvolvimento. Ainda é uma página estática!)</p>
             <table className='table'>
                 <thead>
                     <tr>
@@ -25,36 +50,20 @@ export const OrderHistory = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><GrStatusGoodSmall className='finishing'/><span>Finalizado</span></td>
-                        <td><span className='mobile'><strong>Cód.: </strong></span>00001</td>
-                        <td>1 X Prato Feito, 1 X Mini Churros, 1 X Prato Feito, 1 X Mini Churros, 1 X Prato Feito, 1 X Mini Churros,</td>
-                        <td><span className='mobile'><strong>Data e Hora</strong> - </span>16/06 às 14:50hrs</td>
-                    </tr>
-                    <tr>
-                        <td><GrStatusGoodSmall className='finishing'/><span>Finalizado</span></td>
-                        <td><span className='mobile'><strong>Cód.: </strong></span>00002</td>
-                        <td>1 X Prato Feito, 1 X Mini Churros, 1 X Prato Feito, 1 X Mini Churros, 1 X Prato Feito, </td>
-                        <td><span className='mobile'><strong>Data e Hora</strong> - </span>16/06 às 15:00hrs</td>
-                    </tr>
-                    <tr>
-                        <td><GrStatusGoodSmall className='waiting'/><span>Preparando</span></td>
-                        <td><span className='mobile'><strong>Cód.: </strong></span>00003</td>
-                        <td>1 X Prato Feito, 1 X Mini Churros</td>
-                        <td><span className='mobile'><strong>Data e Hora</strong> - </span>16/06 às 15:20hrs</td>
-                    </tr>
-                    <tr>
-                        <td><GrStatusGoodSmall className='waiting'/><span>Preparando</span></td>
-                        <td><span className='mobile'><strong>Cód.: </strong></span>00003</td>
-                        <td>1 X Prato Feito, 1 X Mini Churros</td>
-                        <td><span className='mobile'><strong>Data e Hora</strong> - </span>16/06 às 15:20hrs</td>
-                    </tr>
-                    <tr>
-                        <td><GrStatusGoodSmall className='waiting'/><span>Preparando</span></td>
-                        <td><span className='mobile'><strong>Cód.: </strong></span>00003</td>
-                        <td>1 X Prato Feito, 1 X Mini Churros</td>
-                        <td><span className='mobile'><strong>Data e Hora</strong> - </span>16/06 às 15:20hrs</td>
-                    </tr>
+                    {
+                        orders && orders.map( order => 
+                        <tr key={order.id}>
+                            <td><GrStatusGoodSmall className={getStatus(order.status)}/><span>{order.status}</span></td>
+                            <td><span className='mobile'><strong>Cód.: </strong></span>0000{order.id}</td>
+                            <td style={{ display: "block"}}>{order.dishes.map( dishe => 
+                                <span key={dishe.id}>
+                                    {dishe.quantity} x {dishe.title}, {" "}
+                                </span>
+                            )}
+                            </td>
+                            <td><span className='mobile'><strong>Data e Hora</strong> - </span>{order.created_at}</td>
+                        </tr>)
+                    }
                 </tbody>
             </table>
         </Container>
