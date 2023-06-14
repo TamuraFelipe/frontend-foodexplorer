@@ -74,10 +74,18 @@ export const Header = ({search, disabled}) => {
                             <li>
                                 <Link to="/favorites">Meus Favoritos</Link>
                             </li>
-                            <li>
-                                <Link to="/history">Histórico de Pedidos</Link>
-                            </li>
+                            
                         </>
+                    }
+                    {
+                        !user.isAdmin ?
+                        <li>
+                            <Link to="/history">Histórico de Pedidos</Link>
+                        </li>
+                        :
+                        <li>
+                            <Link to="/history">Gerenciar Pedidos</Link>
+                        </li>
                     }
                     <li><Link to="#" onClick={signOut}>Sair</Link></li>
                 </ul>
@@ -89,8 +97,13 @@ export const Header = ({search, disabled}) => {
                 <>
                     <Link to="/cart">Pedidos <span>({cart.length})</span></Link>
                     <Link className='favorites' to="/favorites"><FcLike size={30}/></Link>
-                    <Link to="/history" className='btn-history'>Histórico de Pedidos</Link>
                 </>
+            }
+            {
+                !user.isAdmin ?
+                <Link to="/history" className='btn-history'>Histórico de Pedidos</Link>
+                :
+                <Link to="/history" className='btn-history'>Gerenciar Pedidos</Link>
             }
             
 
