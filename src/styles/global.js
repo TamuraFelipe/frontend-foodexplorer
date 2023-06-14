@@ -16,13 +16,15 @@ export default createGlobalStyle`
 
         -webkit-font-smoothing: antialiased;
         height: 100%;
-
-        
-        
-
     }
+
+    
     h1 {
         font-family: 'Roboto', sans-serif;
+    }
+    h2.swal2-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 18px;
     }
     label {
         font-family: 'Roboto', sans-serif;
@@ -69,6 +71,9 @@ export default createGlobalStyle`
     td, th {
         font-family: 'Poppins', sans-serif;
     }
+    div.swal2-loader {
+        display: none!important;
+    } 
 `;
 
 /*
