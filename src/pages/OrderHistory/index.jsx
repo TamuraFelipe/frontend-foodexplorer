@@ -9,29 +9,32 @@ import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { api } from '../../services/api';
 import { useAuth } from '../../hooks/auth';
+import { Select } from '../../components/Select';
 
 export const OrderHistory = () => {
     const [orders, setOrders] = useState([]);
+    const [status, setStatus] = useState("🔴 Aguardando")
     
     const {user} = useAuth();
 
+    /* 🟠 */
     function getStatus(status){
         if(status === "Aguardando"){
-            return "pending";
+            return "🔴 Aguardando";
         } else if (status === "Preparando") {
-            return "waiting";
+            return "🟡 Preparando";
         } else {
-            return "finishing";
+            return "🟢 Finalizado";
         }
     }
+
+    
     
     useEffect( () => {
         async function fetchOrders(){
             const response = await api.get("/orders");
             const data = response.data;
-            
             setOrders(data);
-            //console.log(data)
         }
         fetchOrders();
     }, [orders]);
@@ -39,7 +42,12 @@ export const OrderHistory = () => {
     <>
         <Header disabled/>
         <Container> 
-            <h1>Pedidos</h1>
+            {
+                !user.isAdmin ? 
+                <h1>Pedidos</h1>
+                :
+                <h1>Gerenciar Pedidos</h1>
+            }
             <table className='table'>
                 <thead>
                     <tr>
@@ -55,15 +63,33 @@ export const OrderHistory = () => {
                         orders.length === 0 &&
                         <tr style={{ gridTemplateColumns: '1fr'}}>
                             <td style={{ justifyContent: 'center'}}>
-                                <strong>Desculpe! Você ainda não possui histórico de compras!</strong>
+                                {
+                                    !user.isAdmin ?
+                                    <strong>Você ainda não possui histórico de compras!</strong>
+                                    :
+                                    <strong>A loja ainda não possui pedidos hoje!</strong>
+                                }
                             </td>
                         </tr>
                     }
                     
                     {
-                        orders && orders.map( order => 
+                        orders && orders.toReversed().map( order => 
                         <tr key={order.id}>
-                            <td><GrStatusGoodSmall className={getStatus(order.status)}/><span>{order.status}</span></td>
+                            {
+                                !user.isAdmin ?
+                                <td>{getStatus( order.status )}</td>
+                                :
+                                <td>
+                                    <Select defaultValue={order.status} id={order.id}/>
+                                    {/* <select defaultValue={order.status} onChange={ ({target}) => changeStatus( order.id, target.value) }>
+                                        <option value="Aguardando">🔴 Aguardando</option>
+                                        <option value="Preparando">🟡 Preparando</option>
+                                        <option value="Finalizado">🟢 Finalizado</option>
+                                    </select> */}
+                                </td>
+                            }
+
                             <td><span className='mobile'><strong>Cód.: </strong></span>0000{order.id}</td>
                             <td style={{ display: "block"}}>{order.dishes.map( dishe => 
                                 <span key={dishe.id}>
