@@ -10,7 +10,7 @@ A aplicação foi desenvolvida de forma responsiva, visando proporcionar uma exp
 
 Link para aplicação e login com a visão administrativa do projeto.
 
-Link: https://3xplor3r-food.netlify.app/history
+Link: https://3xplor3r-food.netlify.app
 
 user: admin@email.com
 
