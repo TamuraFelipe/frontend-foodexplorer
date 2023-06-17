@@ -10,7 +10,7 @@ A aplicação foi desenvolvida de forma responsiva, visando proporcionar uma exp
 
 Link para aplicação e login com a visão administrativa do projeto.
 
-Link: 
+Link: https://3xplor3r-food.netlify.app/history
 
 user: admin@email.com
 
@@ -60,7 +60,7 @@ O frontend do Food Explorer utiliza as seguintes tecnologias:
 - [x] Ao clicar no botão meu pedido, o usuário será redirecionado para uma tela onde irá ver o seu pedido, a soma e os métodos de pagamento.
 - [x] O usuário poderá excluir um prato do carrinho e o valor total do pedido deve ser atualizado automaticamente.
 - [x] O usuário poderá marcar um prato como favorito, basta clicar no coração que aparece ao lado de cada um;
-- [ ] O admin irá visualizar e controlar o status de cada pedido, por um campo do tipo select. Os pedidos irão aparecer em uma tabela ao clicar em Pedidos;
+- [x] O admin irá visualizar e controlar o status de cada pedido, por um campo do tipo select. Os pedidos irão aparecer em uma tabela ao clicar em Pedidos;
 - [ ] Já que o projeto está em dark mode, você pode aplicar a versão light mode;
 
 
